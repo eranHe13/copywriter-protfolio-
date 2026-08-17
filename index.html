@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>זיו סול — קופירייטר</title>
+  <meta name="description" content="זיו סול — קופירייטר פרילנס. שפת מותג, קופי לאתרים, קמפיינים, ניימינג, מיקרו־קופי ואימיילים שעובדים.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>">
+</head>
+<body>
+  <!-- CRT overlays: fixed, pointer-events:none, cover viewport -->
+  <div class="crt-bezel" aria-hidden="true"></div>
+  <div class="crt-scanlines" aria-hidden="true"></div>
+  <div class="crt-vignette" aria-hidden="true"></div>
+
+  <!-- Sky background with soft CSS clouds -->
+  <div class="sky" aria-hidden="true">
+    <span class="cloud cloud--1"></span>
+    <span class="cloud cloud--2"></span>
+    <span class="cloud cloud--3"></span>
+    <span class="cloud cloud--4"></span>
+  </div>
+
+  <!-- Fixed nav. The wordmark types itself out once the manifesto clears. -->
+  <nav class="nav">
+    <a class="nav__mark" href="#top">זיו סול / קופירייטר</a>
+    <div class="nav__links">
+      <a href="#work">עבודות</a>
+      <a class="nav__cta" href="#contact"><span class="dot" aria-hidden="true"></span>דברו איתי</a>
+    </div>
+  </nav>
+
+  <!-- Chrome mark: sits centred over the hero, then docks into the nav on scroll -->
+  <div class="chrome" id="chrome"><span class="chrome__spin"><span class="chrome__text">בינה לא מלאכותית</span></span></div>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <header class="hero" id="hero">
+      <!-- The manifesto types itself out here; JS adds .hero--type -->
+      <div class="hero__stage">
+        <div class="hero__manifesto">
+          <p>אין לי אייפון</p>
+          <p>אין לי טיקטוק</p>
+          <p>אין לי מנוי לקלוד</p>
+          <p class="hero__punch">אבל אולי יש לי את זה</p>
+        </div>
+
+        <p class="hero__hint mono">
+          <span class="blink">▶</span> גללו למטה
+        </p>
+      </div>
+    </header>
+
+    <!-- ============ SELECTED WORK ============ -->
+    <section class="section work" id="work" data-reveal>
+      <div class="section__head">
+        <h2 class="section__title">עבודות נבחרות</h2>
+      </div>
+
+      <!-- Plain list. Each title opens the project in the popup below. -->
+      <div class="rows">
+        <article class="row" data-row>
+          <h3 class="row__head">
+            <button type="button" aria-expanded="false" aria-controls="row-body-1">
+              <span class="row__dot" aria-hidden="true"></span>
+              <span class="row__title">כביסכל</span>
+              <span class="row__go" aria-hidden="true">←</span>
+            </button>
+          </h3>
+          <div class="row__more" id="row-body-1">
+            <div>
+              <p class="row__desc mono">קמפיין פרינט — "עם כביסכל, תמיד כיף לחבק אותך" · בחרו את הריח שלכם</p>
+              <span class="tag">קמפיין</span>
+            </div>
+          </div>
+          <div class="row__media">
+            <img src="assets/work/kaviskal-train.jpg" alt="כביסכל — מודעת פרינט, סצנת רכבת" width="853" height="1280" loading="lazy">
+            <img src="assets/work/kaviskal-cop.jpg" alt="כביסכל — מודעת פרינט, סצנת שוטר" width="853" height="1280" loading="lazy">
+            <img src="assets/work/kaviskal-judo.jpg" alt="כביסכל — מודעת פרינט, סצנת ג'ודו" width="853" height="1280" loading="lazy">
+          </div>
+        </article>
+
+        <article class="row" data-row>
+          <h3 class="row__head">
+            <button type="button" aria-expanded="false" aria-controls="row-body-2">
+              <span class="row__dot" aria-hidden="true"></span>
+              <span class="row__title">סקידיל</span>
+              <span class="row__go" aria-hidden="true">←</span>
+            </button>
+          </h3>
+          <div class="row__more" id="row-body-2">
+            <div>
+              <p class="row__desc mono">הבריף: לייצר פוסט הארדסייל לרשתות — 20% או חמישי חינם על יעדים לחופשת סקי באירופה</p>
+              <p class="row__quote">חבילת גלישה חמישית עלינו! אם אתה לא תגלה אנחנו לא נגלה…</p>
+              <span class="tag">סושיאל</span>
+            </div>
+          </div>
+          <div class="row__media">
+            <img src="assets/work/skideal-post.png" alt="סקידיל — פוסט לרשתות" loading="lazy">
+          </div>
+        </article>
+
+        <article class="row" data-row>
+          <h3 class="row__head">
+            <button type="button" aria-expanded="false" aria-controls="row-body-3">
+              <span class="row__dot" aria-hidden="true"></span>
+              <span class="row__title">תמונת כליה</span>
+              <span class="row__go" aria-hidden="true">←</span>
+            </button>
+          </h3>
+          <div class="row__more" id="row-body-3">
+            <div>
+              <p class="row__desc mono">הבריף: באנר טיפוגרפי לרשתות לעידוד תרומות כליה</p>
+              <span class="tag">באנר</span>
+            </div>
+          </div>
+          <div class="row__media">
+            <img src="assets/work/kidney-banner.png" alt="תמונת כליה — באנר טיפוגרפי" loading="lazy">
+          </div>
+        </article>
+
+        <article class="row" data-row>
+          <h3 class="row__head">
+            <button type="button" aria-expanded="false" aria-controls="row-body-4">
+              <span class="row__dot" aria-hidden="true"></span>
+              <span class="row__title">בן אנד ג׳ריז</span>
+              <span class="row__go" aria-hidden="true">←</span>
+            </button>
+          </h3>
+          <div class="row__more" id="row-body-4">
+            <div>
+              <p class="row__desc mono">הבריף: בן אנד ג׳ריז משיקים מארז חדש של 4 טילונים במחיר משתלם</p>
+              <span class="tag">קמפיין</span>
+            </div>
+          </div>
+          <div class="row__media">
+            <img src="assets/work/benjerry-value.png" alt="בן אנד ג׳ריז — ויזואל מארז" loading="lazy">
+          </div>
+        </article>
+
+        <article class="row" data-row>
+          <h3 class="row__head">
+            <button type="button" aria-expanded="false" aria-controls="row-body-5">
+              <span class="row__dot" aria-hidden="true"></span>
+              <span class="row__title">אדידס הום</span>
+              <span class="row__go" aria-hidden="true">←</span>
+            </button>
+          </h3>
+          <div class="row__more" id="row-body-5">
+            <div>
+              <p class="row__desc mono">הבריף: הכלאה בין מותגים — איקאה x אדידס</p>
+              <p class="row__quote">״אדידס הום״ — ליין רהיטים של אדידס בחנויות איקאה</p>
+              <span class="tag">קונספט</span>
+            </div>
+          </div>
+          <div class="row__media">
+            <img src="assets/work/adidas-home-1.png" alt="אדידס הום — כורסה בשחור" loading="lazy">
+            <img src="assets/work/adidas-home-2.png" alt="אדידס הום — שלושת הגוונים" loading="lazy">
+            <img src="assets/work/adidas-home-3.png" alt="אדידס הום — הכורסה בסלון" loading="lazy">
+          </div>
+        </article>
+
+        <article class="row" data-row>
+          <h3 class="row__head">
+            <button type="button" aria-expanded="false" aria-controls="row-body-6">
+              <span class="row__dot" aria-hidden="true"></span>
+              <span class="row__title">הכפכפיאדה by אדידס</span>
+              <span class="row__go" aria-hidden="true">←</span>
+            </button>
+          </h3>
+          <div class="row__more" id="row-body-6">
+            <div>
+              <p class="row__desc mono">הבריף: לבחור מותג כפכפים ולהביא רעיון לפעילות אינטראקטיבית משלבת קהל</p>
+              <p class="row__quote">הכפכפיאדה — אירוע חברתי של אדידס לחיזוק אופי המותג והחיבור שלו עם הקהל</p>
+              <p class="row__desc mono">מוניומנט הכפכף נועד לגרות את עניין הציבור לפני חשיפת האירוע. הקונספט: תחרויות ספורט בכפכפים על החול בחוף הים</p>
+              <ul class="row__list mono">
+                <li>תחרות ריצה על החול בכפכפים</li>
+                <li>זריקת כפכף לרוחק</li>
+                <li>כפכאפות: תחרות כאפות עם כפכף</li>
+                <li>תחרות שחייה עם כפכף על כל יד</li>
+                <li>אולטימייט פריזבי כפכפים</li>
+                <li>כפכמטקות</li>
+              </ul>
+              <p class="row__desc mono">פרסים שווים לזוכים, וכל המשתתפים מקבלים כפכפי אדידס</p>
+              <span class="tag">אירוע</span>
+            </div>
+          </div>
+          <div class="row__media">
+            <img src="assets/work/kafkafiada-1.png" alt="הכפכפיאדה — מוניומנט הכפכף בחוף הים" loading="lazy">
+            <img src="assets/work/kafkafiada-2.jpg" alt="הכפכפיאדה — טיזר קאמינג סון על סוליית הכפכף" loading="lazy">
+            <img src="assets/work/kafkafiada-3.jpg" alt="הכפכפיאדה — טיזר קאמינג סון על רקע שמיים" loading="lazy">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact" data-reveal>
+      <div class="section__head">
+      </div>
+
+      <a class="contact__email" href="mailto:hello@example.com">hello@example.com</a>
+
+      
+    </section>
+  </main>
+
+  <footer class="footer mono">
+    <span>© <span id="year">2026</span> זיו סול</span>
+    <span>עשוי ממילים</span>
+  </footer>
+
+  <!-- Project popup. Contents are cloned in from the clicked row's own markup. -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal__close" type="button" data-close aria-label="סגירה">✕</button>
+      <h3 class="modal__title" id="modal-title"></h3>
+      <div class="modal__body"></div>
+      <div class="modal__media"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
