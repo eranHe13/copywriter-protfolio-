@@ -700,15 +700,20 @@ body.modal-open { overflow: hidden; }
   .nav__links { gap: 12px; }
   .nav__links a:not(.nav__cta) { display: none; }   /* keep nav uncluttered on phones */
 
-  /* The full wordmark plus the pill needs more room than a phone has, which was
-     pushing the pill off the edge and wrapping its label. Trim both to fit and
-     stop either from ever breaking across lines. */
-  .nav { padding-inline: 12px; }
-  .nav__mark { font-size: 0.82rem; letter-spacing: 0.02em; }
-  .nav__cta { font-size: 0.72rem; padding: 5px 10px; gap: 6px; }
+  /* Header pared right back on phones. The full wordmark plus the pill needs
+     more room than a phone has, so both are small and neither may wrap. */
+  .nav { padding: calc(var(--bezel-w) + 4px) 12px 4px; font-size: 0.64rem; }
+  .nav__mark { font-size: 0.68rem; letter-spacing: 0.02em; }
+  .nav__cta { font-size: 0.6rem; padding: 4px 9px; gap: 5px; }
   .nav__mark,
   .nav__cta { white-space: nowrap; }
-  .dot { width: 7px; height: 7px; }
+  .dot { width: 6px; height: 6px; }
+
+  /* Intro type much smaller too. The dot grid is coarsened here on purpose: at
+     this size the desktop pitch lands under a pixel and smears into a blur, so
+     the dots are spread out enough to still read as dots. */
+  .hero__manifesto p { font-size: 1rem; }
+  .hero--type .hero__manifesto { --dot-pitch: 0.13em; }
 }
 
 @media (max-width: 375px) {
