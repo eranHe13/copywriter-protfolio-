@@ -76,9 +76,9 @@
             </div>
           </div>
           <div class="row__media">
-            <img src="assets/work/kaviskal-train.jpg" alt="כביסכל — מודעת פרינט, סצנת רכבת" width="853" height="1280" loading="lazy">
-            <img src="assets/work/kaviskal-cop.jpg" alt="כביסכל — מודעת פרינט, סצנת שוטר" width="853" height="1280" loading="lazy">
-            <img src="assets/work/kaviskal-judo.jpg" alt="כביסכל — מודעת פרינט, סצנת ג'ודו" width="853" height="1280" loading="lazy">
+            <img src="assets/kviskol/1.jpg" alt="כביסכל — תמונה 1" loading="lazy">
+            <img src="assets/kviskol/2.jpg" alt="כביסכל — תמונה 2" loading="lazy">
+            <img src="assets/kviskol/3.jpeg" alt="כביסכל — תמונה 3" loading="lazy">
           </div>
         </article>
 
@@ -98,7 +98,7 @@
             </div>
           </div>
           <div class="row__media">
-            <img src="assets/work/skideal-post.png" alt="סקידיל — פוסט לרשתות" loading="lazy">
+            <img src="assets/skideal/skideal-post.png" alt="סקידיל — פוסט לרשתות" loading="lazy">
           </div>
         </article>
 
@@ -106,7 +106,7 @@
           <h3 class="row__head">
             <button type="button" aria-expanded="false" aria-controls="row-body-3">
               <span class="row__dot" aria-hidden="true"></span>
-              <span class="row__title">תמונת כליה</span>
+              <span class="row__title">תרומת כליה</span>
               <span class="row__go" aria-hidden="true">←</span>
             </button>
           </h3>
@@ -117,7 +117,7 @@
             </div>
           </div>
           <div class="row__media">
-            <img src="assets/work/kidney-banner.png" alt="תמונת כליה — באנר טיפוגרפי" loading="lazy">
+            <img src="assets/tromatkalia/1.jpeg" alt="תרומת כליה — באנר טיפוגרפי" loading="lazy">
           </div>
         </article>
 
@@ -136,7 +136,7 @@
             </div>
           </div>
           <div class="row__media">
-            <img src="assets/work/benjerry-value.png" alt="בן אנד ג׳ריז — ויזואל מארז" loading="lazy">
+            <img src="assets/bn&amp;grz/adidas-home-2.png" alt="בן אנד ג׳ריז — ויזואל מארז" loading="lazy">
           </div>
         </article>
 
@@ -156,9 +156,11 @@
             </div>
           </div>
           <div class="row__media">
-            <img src="assets/work/adidas-home-1.png" alt="אדידס הום — כורסה בשחור" loading="lazy">
-            <img src="assets/work/adidas-home-2.png" alt="אדידס הום — שלושת הגוונים" loading="lazy">
-            <img src="assets/work/adidas-home-3.png" alt="אדידס הום — הכורסה בסלון" loading="lazy">
+            <img src="assets/adidas/adidas-home-1.jpeg" alt="אדידס הום — תמונה 1" loading="lazy">
+            <img src="assets/adidas/adidas-home-2.png" alt="אדידס הום — תמונה 2" loading="lazy">
+            <img src="assets/adidas/adidas-home-3.jpeg" alt="אדידס הום — תמונה 3" loading="lazy">
+            <img src="assets/adidas/adidas-home-4.png" alt="אדידס הום — תמונה 4" loading="lazy">
+            <img src="assets/adidas/adidas-home-5.png" alt="אדידס הום — תמונה 5" loading="lazy">
           </div>
         </article>
 
@@ -188,9 +190,10 @@
             </div>
           </div>
           <div class="row__media">
-            <img src="assets/work/kafkafiada-1.png" alt="הכפכפיאדה — מוניומנט הכפכף בחוף הים" loading="lazy">
-            <img src="assets/work/kafkafiada-2.jpg" alt="הכפכפיאדה — טיזר קאמינג סון על סוליית הכפכף" loading="lazy">
-            <img src="assets/work/kafkafiada-3.jpg" alt="הכפכפיאדה — טיזר קאמינג סון על רקע שמיים" loading="lazy">
+            <img src="assets/cafcaf/kafkafiada-1.png" alt="הכפכפיאדה by אדידס — תמונה 1" loading="lazy">
+            <img src="assets/cafcaf/kafkafiada-2.jpg" alt="הכפכפיאדה by אדידס — תמונה 2" loading="lazy">
+            <img src="assets/cafcaf/kafkafiada-3.jpeg" alt="הכפכפיאדה by אדידס — תמונה 3" loading="lazy">
+            <img src="assets/cafcaf/kafkafiada-4.jpeg" alt="הכפכפיאדה by אדידס — תמונה 4" loading="lazy">
           </div>
         </article>
       </div>
@@ -209,17 +212,26 @@
 
   <footer class="footer mono">
     <span>© <span id="year">2026</span> זיו סול</span>
-    <span>עשוי ממילים</span>
+
   </footer>
 
   <!-- Project popup. Contents are cloned in from the clicked row's own markup. -->
-  <div class="modal" id="modal" hidden>
+  <div class="modal modal--split" id="modal" hidden>
     <div class="modal__backdrop" data-close></div>
     <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <button class="modal__close" type="button" data-close aria-label="סגירה">✕</button>
+      <p class="modal__kicker mono" hidden></p>
       <h3 class="modal__title" id="modal-title"></h3>
       <div class="modal__body"></div>
-      <div class="modal__media"></div>
+      <div class="modal__visuals">
+        <div class="modal__media" tabindex="0" aria-label="גלריית תמונות"></div>
+        <div class="modal__counter mono" dir="ltr" hidden>
+          <span class="modal__counter-current">1</span>
+          <span aria-hidden="true">/</span>
+          <span class="modal__counter-total">1</span>
+          <span class="modal__counter-arrow" aria-hidden="true">↓</span>
+        </div>
+      </div>
     </div>
   </div>
 
