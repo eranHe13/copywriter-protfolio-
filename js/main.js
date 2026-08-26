@@ -200,6 +200,18 @@
     var closeBtn = modal.querySelector(".modal__close");
     var opener = null;
     var mediaScrollFrame = 0;
+    var modalDefaultCopy = null;
+    var modalStoryboards = {};
+    var activeCopyIndex = -1;
+
+    var renderModalCopy = function (index) {
+      if (index === activeCopyIndex) return;
+      var source = modalStoryboards[index] || modalDefaultCopy;
+      mBody.textContent = "";
+      if (source) mBody.appendChild(source.cloneNode(true));
+      mBody.scrollTop = 0;
+      activeCopyIndex = index;
+    };
 
     var updateMediaCounter = function () {
       mediaScrollFrame = 0;
@@ -211,6 +223,7 @@
       );
       mCounterCurrent.textContent = current + 1;
       mCounter.setAttribute("aria-label", "תמונה " + (current + 1) + " מתוך " + slides.length);
+      renderModalCopy(current);
     };
 
     mMedia.addEventListener("scroll", function () {
@@ -226,6 +239,9 @@
         mKicker.textContent = "";
         mBody.textContent = "";
         mMedia.textContent = "";
+        modalDefaultCopy = null;
+        modalStoryboards = {};
+        activeCopyIndex = -1;
       };
       if (reduceMotion) finish();
       else setTimeout(finish, 320);         // let the fade finish before unmounting
@@ -245,6 +261,9 @@
       mBody.textContent = "";
       mKicker.textContent = "";
       mKicker.hidden = true;
+      modalDefaultCopy = null;
+      modalStoryboards = {};
+      activeCopyIndex = -1;
       if (copy) {
         var copyClone = copy.cloneNode(true);
         var category = copyClone.querySelector(".tag");
@@ -253,27 +272,33 @@
           mKicker.hidden = false;
           category.remove();
         }
-        mBody.appendChild(copyClone);
+        modalDefaultCopy = copyClone;
       }
+      [].forEach.call(row.querySelectorAll(".row__storyboard[data-storyboard-index]"), function (storyboard) {
+        modalStoryboards[Number(storyboard.dataset.storyboardIndex)] = storyboard;
+      });
+      renderModalCopy(0);
 
       mMedia.textContent = "";
-      var imageCount = 0;
+      var mediaCount = 0;
       if (media) {
-        [].forEach.call(media.querySelectorAll("img"), function (img) {
-          var c = img.cloneNode(true);
+        [].forEach.call(media.children, function (item) {
+          if (!item.matches("img, audio, video, .media-placeholder")) return;
+          var c = item.cloneNode(true);
           var slide = document.createElement("div");
           slide.className = "modal__slide";
-          c.loading = "eager";               // it is on screen the moment it mounts
+          if (c.tagName === "IMG") c.loading = "eager";
+          if (c.tagName === "AUDIO" || c.tagName === "VIDEO") c.preload = "metadata";
           slide.appendChild(c);
           mMedia.appendChild(slide);
-          imageCount += 1;
+          mediaCount += 1;
         });
       }
       mMedia.scrollTop = 0;
-      mCounter.hidden = imageCount < 2;
+      mCounter.hidden = mediaCount < 2;
       mCounterCurrent.textContent = "1";
-      mCounterTotal.textContent = imageCount;
-      mCounter.setAttribute("aria-label", "תמונה 1 מתוך " + imageCount);
+      mCounterTotal.textContent = mediaCount;
+      mCounter.setAttribute("aria-label", "פריט מדיה 1 מתוך " + mediaCount);
 
       modal.hidden = false;
       document.body.classList.add("modal-open");

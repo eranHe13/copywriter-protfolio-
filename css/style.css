@@ -498,6 +498,7 @@ body.is-intro .hero__stage { justify-content: center; }
    inside the popup, which clones them on open. */
 .row__more,
 .row__media { display: none; }
+.row__storyboards[hidden] { display: none; }
 
 .row__desc {
   color: var(--ink-dim);
@@ -664,6 +665,146 @@ body.is-intro .hero__stage { justify-content: center; }
 .modal__body .row__desc:first-child::before { content: "הבריף"; }
 .modal__body .row__quote::before { content: "הרעיון"; }
 
+/* Image-linked text storyboards. These replace the general project copy while
+   the corresponding Kaviskal campaign image is active. */
+.storyboard {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  color: rgba(242, 246, 251, 0.9);
+}
+.storyboard__header {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.storyboard__label,
+.storyboard__shot-label {
+  color: var(--green);
+  font-size: 0.68rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+.storyboard__title {
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.12;
+}
+.storyboard__section {
+  display: grid;
+  gap: 10px;
+}
+.storyboard__section-title {
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.07em;
+}
+.storyboard__section p,
+.storyboard__shots {
+  font-size: clamp(0.96rem, 1.18vw, 1.07rem);
+  line-height: 1.68;
+}
+.storyboard__characters {
+  display: grid;
+  gap: 9px;
+}
+.storyboard__characters strong { color: var(--ink); }
+.storyboard__shots {
+  display: grid;
+  gap: 0;
+  list-style: none;
+}
+.storyboard__shots li {
+  display: grid;
+  gap: 9px;
+  padding: 17px 0;
+  border-top: 1px solid rgba(244, 247, 251, 0.13);
+}
+.storyboard__shots li:first-child { border-top: 0; padding-top: 6px; }
+.storyboard__shots blockquote {
+  padding: 9px 12px;
+  border-inline-start: 2px solid var(--green);
+  background: rgba(51, 255, 102, 0.055);
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 650;
+  line-height: 1.55;
+}
+.storyboard__note {
+  color: var(--ink-dim);
+  font-size: 0.92rem !important;
+}
+.storyboard__endline {
+  color: var(--green);
+  font-weight: 750;
+}
+
+/* Script and concept treatments for projects whose audio/video is forthcoming. */
+.radio-script {
+  display: grid;
+  gap: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+.script__line {
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(244, 247, 251, 0.12);
+  color: rgba(242, 246, 251, 0.9);
+  font-size: clamp(0.96rem, 1.18vw, 1.07rem);
+  line-height: 1.65;
+}
+.script__line strong { color: var(--green); }
+.script__line--button {
+  color: var(--ink);
+  font-weight: 700;
+}
+.script__cue {
+  margin: 14px 0;
+  padding: 10px 12px;
+  border-inline-start: 2px solid var(--green);
+  background: rgba(51, 255, 102, 0.055);
+  color: var(--ink-dim);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.script__cue span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.script__cue--whisper { color: var(--ink); font-weight: 650; }
+
+.concept-copy {
+  display: grid;
+  gap: 18px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+.concept-copy__contrast {
+  display: grid;
+  gap: 9px;
+}
+.concept-copy__contrast p {
+  padding: 12px 14px;
+  border: 1px solid rgba(244, 247, 251, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(242, 246, 251, 0.88);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+.concept-copy__summary {
+  color: var(--ink);
+  font-size: clamp(1.02rem, 1.3vw, 1.15rem);
+  font-weight: 650;
+  line-height: 1.65;
+}
+
 .modal__visuals {
   position: relative;
   margin-top: clamp(18px, 3vh, 34px);
@@ -681,6 +822,41 @@ body.is-intro .hero__stage { justify-content: center; }
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
+.modal__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.modal__media audio { width: min(520px, 90%); }
+
+.media-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  padding: 32px;
+  border: 1px dashed rgba(51, 255, 102, 0.46);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at center, rgba(51, 255, 102, 0.08), transparent 48%),
+    rgba(255, 255, 255, 0.025);
+  color: var(--ink-dim);
+  text-align: center;
+}
+.media-placeholder__icon {
+  color: var(--green);
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1;
+  text-shadow: 0 0 22px rgba(51, 255, 102, 0.35);
+}
+.media-placeholder strong {
+  color: var(--ink);
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+}
+.media-placeholder span:last-child { font-size: 0.92rem; }
 
 /* Shared split layout: copy occupies the right third; artwork stacks and scrolls
    in the left two-thirds. Each image is contained within the visible pane. */
@@ -723,6 +899,7 @@ body.is-intro .hero__stage { justify-content: center; }
 }
 .modal--split .modal__slide {
   flex: 0 0 100%;
+  width: 100%;
   height: 100%;
   min-height: 0;
   padding: clamp(8px, 1vw, 14px);
@@ -736,6 +913,11 @@ body.is-intro .hero__stage { justify-content: center; }
   max-height: 100%;
   object-fit: contain;
   border: 0;
+}
+.modal--split .modal__media audio,
+.modal--split .modal__media video,
+.modal--split .modal__media .media-placeholder {
+  align-self: center;
 }
 
 .modal__counter {
