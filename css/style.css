@@ -805,6 +805,43 @@ body.is-intro .hero__stage { justify-content: center; }
   line-height: 1.65;
 }
 
+/* Long-form press copy keeps its hierarchy when it shares the narrow text pane
+   with the shorter campaign brief. */
+.press-release {
+  display: grid;
+  gap: 14px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+.press-release__label {
+  color: var(--green);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+.press-release__title {
+  color: var(--ink);
+  font-size: clamp(1.2rem, 1.65vw, 1.55rem);
+  line-height: 1.35;
+}
+.press-release__subtitle {
+  color: rgba(242, 246, 251, 0.9);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.65;
+}
+.press-release__body {
+  display: grid;
+  gap: 14px;
+  color: var(--ink-dim);
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+.press-release__signoff {
+  color: var(--green);
+  font-weight: 750;
+}
+
 .modal__visuals {
   position: relative;
   margin-top: clamp(18px, 3vh, 34px);
@@ -913,6 +950,14 @@ body.is-intro .hero__stage { justify-content: center; }
   max-height: 100%;
   object-fit: contain;
   border: 0;
+}
+/* Text-heavy portrait artwork needs to use the media pane's full width so its
+   copy remains readable; the pane itself supplies the vertical scrolling. */
+.modal--split .modal__media img.row__image--readable {
+  width: min(100%, 760px);
+  height: auto;
+  max-height: none;
+  margin-inline: auto;
 }
 .modal--split .modal__media audio,
 .modal--split .modal__media video,
