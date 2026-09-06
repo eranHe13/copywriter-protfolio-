@@ -319,8 +319,49 @@
     modal.addEventListener("click", function (e) {
       if (e.target.hasAttribute("data-close")) closeModal();
     });
+
+    /* Click a visual to see it full screen. Portrait artwork is height-limited
+       inside the popup's landscape pane, so text-heavy pieces are unreadable
+       there; this gives them the whole viewport instead. */
+    var zoom = null;
+
+    var closeZoom = function () {
+      if (!zoom) return;
+      zoom.classList.remove("is-open");
+      var node = zoom;
+      zoom = null;
+      setTimeout(function () {
+        if (node.parentNode) node.parentNode.removeChild(node);
+      }, 260);
+    };
+
+    var openZoom = function (src, alt) {
+      closeZoom();
+      zoom = document.createElement("div");
+      zoom.className = "imgzoom";
+      var big = document.createElement("img");
+      big.src = src;
+      big.alt = alt || "";
+      zoom.appendChild(big);
+      var hint = document.createElement("p");
+      hint.className = "imgzoom__hint mono";
+      hint.textContent = "לחצו לסגירה";
+      zoom.appendChild(hint);
+      document.body.appendChild(zoom);
+      void zoom.offsetWidth;               // flush so the fade has a start state
+      zoom.classList.add("is-open");
+      zoom.addEventListener("click", closeZoom);
+    };
+
+    modal.addEventListener("click", function (e) {
+      var img = e.target.closest ? e.target.closest(".modal__media img") : null;
+      if (img) openZoom(img.currentSrc || img.src, img.alt);
+    });
+
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeModal();
+      if (e.key !== "Escape") return;
+      if (zoom) closeZoom();               // the zoom closes first, popup stays
+      else closeModal();
     });
   }
 

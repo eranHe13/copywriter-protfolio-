@@ -249,12 +249,12 @@ body.is-intro .hero__stage { justify-content: center; }
   margin-top: clamp(24px, 5vh, 56px);
   text-align: center;
   font-family: var(--sans);
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.12;
 }
 .hero__manifesto p {
-  font-size: clamp(1.25rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.6rem, 5.6vw, 5.2rem);
   color: var(--ink);
 }
 .hero__manifesto p.hero__punch { color: var(--green); }
@@ -467,17 +467,26 @@ body.is-intro .hero__stage { justify-content: center; }
 
 .row__title {
   font-family: var(--sans);
-  font-weight: 800;
-  font-size: clamp(1.7rem, 4.4vw, 3.6rem);
+  font-weight: 600;
+  font-size: clamp(2rem, 5.2vw, 4.6rem);
   line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--ink-mute);
-  transition: color 0.3s var(--row-ease), text-shadow 0.3s var(--row-ease);
+  letter-spacing: 0.02em;          /* dot-filled glyphs need a little air */
+  /* Same dot-matrix treatment as the intro lines: the glyphs are filled with a
+     dot grid rather than a flat colour. `color` no longer paints anything, so
+     hover swaps --dot-ink instead. */
+  --dot-ink: var(--ink);
+  --dot-pitch: 0.062em;
+  color: transparent;
+  background-image: radial-gradient(circle, var(--dot-ink) 0 50%, transparent 54%);
+  background-size: var(--dot-pitch) var(--dot-pitch);
+  -webkit-background-clip: text;
+          background-clip: text;
+  transition: filter 0.3s var(--row-ease);
 }
 .row__head button:hover .row__title,
 .row__head button:focus-visible .row__title {
-  color: var(--green);
-  text-shadow: 0 0 16px rgba(51, 255, 102, 0.45);
+  --dot-ink: var(--green);
+  filter: drop-shadow(0 0 0.09em rgba(51, 255, 102, 0.55));
 }
 
 /* Arrow sits at the far end and leans out on hover */
@@ -604,12 +613,19 @@ body.is-intro .hero__stage { justify-content: center; }
 
 .modal__title {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  font-weight: 750;
+  font-weight: 600;
   font-size: clamp(2.15rem, 4vw, 3.6rem);
   line-height: 1.05;
   letter-spacing: -0.025em;
   margin-bottom: clamp(20px, 3vh, 34px);
   padding-inline-end: 52px;         /* clear of the close button */
+  --dot-ink: var(--ink);
+  --dot-pitch: 0.058em;
+  color: transparent;
+  background-image: radial-gradient(circle, var(--dot-ink) 0 50%, transparent 54%);
+  background-size: var(--dot-pitch) var(--dot-pitch);
+  -webkit-background-clip: text;
+          background-clip: text;
 }
 
 /* The popup copy favors comfortable Hebrew reading; terminal typography stays
@@ -858,6 +874,41 @@ body.is-intro .hero__stage { justify-content: center; }
   display: block;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  cursor: zoom-in;
+}
+
+/* Full-screen look at one visual. Portrait artwork is height-limited inside the
+   popup's landscape pane — it renders at well under half the pane's width — so
+   text-heavy pieces need somewhere bigger to be read. */
+.imgzoom {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 2vmin;
+  background: rgba(2, 5, 10, 0.94);
+  backdrop-filter: blur(6px);
+  cursor: zoom-out;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.imgzoom.is-open { opacity: 1; }
+.imgzoom img {
+  max-width: 96vw;
+  max-height: 96vh;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+}
+.imgzoom__hint {
+  position: absolute;
+  bottom: 3vmin;
+  inset-inline-start: 50%;
+  transform: translateX(50%);
+  color: var(--ink-mute);
+  pointer-events: none;
 }
 .modal__media video {
   width: 100%;
@@ -938,11 +989,32 @@ body.is-intro .hero__stage { justify-content: center; }
   flex: 0 0 100%;
   width: 100%;
   height: 100%;
+  position: relative;
   min-height: 0;
-  padding: clamp(8px, 1vw, 14px);
+  padding: clamp(4px, 0.6vw, 9px);
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
+/* Only slides holding a picture advertise the zoom — audio and placeholders
+   cannot honour it. */
+.modal--split .modal__slide:has(img)::after {
+  content: "לחצו להגדלה";
+  position: absolute;
+  inset-inline-start: 50%;
+  top: clamp(10px, 1.4vw, 18px);
+  transform: translateX(50%);
+  padding: 5px 12px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  background: rgba(7, 11, 18, 0.82);
+  border: 1px solid rgba(51, 255, 102, 0.45);
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
 .modal--split .modal__media img {
   width: 100%;
   height: 100%;
@@ -950,14 +1022,6 @@ body.is-intro .hero__stage { justify-content: center; }
   max-height: 100%;
   object-fit: contain;
   border: 0;
-}
-/* Text-heavy portrait artwork needs to use the media pane's full width so its
-   copy remains readable; the pane itself supplies the vertical scrolling. */
-.modal--split .modal__media img.row__image--readable {
-  width: min(100%, 760px);
-  height: auto;
-  max-height: none;
-  margin-inline: auto;
 }
 .modal--split .modal__media audio,
 .modal--split .modal__media video,
@@ -1098,6 +1162,11 @@ body.modal-open { overflow: hidden; }
   .nav__mark,
   .nav__cta { white-space: nowrap; }
   .dot { width: 6px; height: 6px; }
+
+  /* Titles carry the same dot fill, so they need the same coarsening at phone
+     sizes — the desktop pitch would land under 2px and smear. */
+  .row__title { --dot-pitch: 0.11em; }
+  .modal__title { --dot-pitch: 0.1em; }
 
   /* Intro type much smaller too. The dot grid is coarsened here on purpose: at
      this size the desktop pitch lands under a pixel and smears into a blur, so
