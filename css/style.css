@@ -619,10 +619,10 @@ body.is-intro .hero__stage { justify-content: center; }
   letter-spacing: -0.025em;
   margin-bottom: clamp(20px, 3vh, 34px);
   padding-inline-end: 52px;         /* clear of the close button */
-  --dot-ink: var(--ink);
+  --dot-ink: #ffffff;
   --dot-pitch: 0.058em;
   color: transparent;
-  background-image: radial-gradient(circle, var(--dot-ink) 0 50%, transparent 54%);
+  background-image: radial-gradient(circle, var(--dot-ink) 0 56%, transparent 60%);
   background-size: var(--dot-pitch) var(--dot-pitch);
   -webkit-background-clip: text;
           background-clip: text;
